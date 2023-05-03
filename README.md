@@ -1,2 +1,5 @@
-# SetTL-homepage
-The home page for the SetTL programming language
+# SetTL -- **Set**-**T**yped **L**anguage
+
+This is the home page of the as-of-yet-undeveloped demonstration programming language SetTL
+
+More to come!
