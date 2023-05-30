@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="settl-set-typed-language">SetTL –
+<strong>Set</strong>-<strong>T</strong>yped
+<strong>L</strong>anguage</h1>
+<p>This is the home page of the as-of-yet-undeveloped demonstration
+programming language SetTL</p>
+<h2 id="features">Features</h2>
+<p>Heres a (not exclusive) list of feature that the draft interpreter of
+SetTL will include:</p>
+<ul>
+<li>Set types – all types are considered equivalent to sets of
+values</li>
+<li>Tag types – implicit types which refine other types</li>
+<li>Automatic function composition:
+<code>with(l in List(T)) let findMax = firstValue((l) -&gt; MaxOf(l))</code></li>
+<li>Imperative and declarative <code>let</code> definitions:
+<code>let y == x + 1; let x = 5</code></li>
+<li>Solving for variable values at CT via unification across functions,
+<code>let</code> definitions, etc:
+<code>let x = 5; let f(x, y)</code></li>
+<li>Native inverse functions:
+<code>fn foo^1(x in Integer, y in Integer) { ... }</code></li>
+<li>Statement types:
+<code>let x in Integer = x0 :: xDeclared(x0 = 5)</code></li>
+<li>Deep arguments: <code>fn foo(deep x in Integer) { ... }</code></li>
+<li>Deep returns: <code>let x = catch(deep x) foo()</code></li>
+<li>Orderless arguments:
+<code>fn foo(orderless: x in Integer, y in Real); foo(1.23, 5)</code> –
+differentiated by type</li>
+<li>Return overloading:
+<code>fn Integer foo(x in Integer) { ... }; fn String foo(x in Integer); let str in String = foo(5)</code></li>
+<li>Scope objects:
+<code>let sandbox = globalScope.copy(); within(sandbox) { ... }</code></li>
+<li>Antegenerators:
+<code>fn goo() in Antegenerator { when(x &gt; 0) yield x}; fn foo() { foreach(x; goo()) print x }; let x = 5 // 5</code>
+– functions that can call their callers</li>
+<li>Return calling / multicalling:
+<code>fn Hour Integer getHour!() in Multicall { onChange(time = Time.current("hour")) yield time}; h = getHour!(); print h // prints each hour</code>
+– functions that return multiple times</li>
+<li><code>when</code>, <code>onChange</code>, <code>request</code> and
+<code>satisfy</code>, <code>waitFor</code>, … – event driven
+programming</li>
+<li>Repeated <code>let</code>ing:
+<code>let y = 5; let x := y + 1; y = 7; print x // 8</code> – reactive
+programming</li>
+<li>Enhanced debugging:
+<ul>
+<li>Debugging mode – slow, but extremely informy</li>
+<li>Function and variable trusting – stating where there isn’t a
+bug</li>
+<li>Retrocausal breakpoints and return / record points – go back to a
+saved position in debug mode</li>
+<li>Primed and stack-dependent breakpoints – breaking depending on
+context</li>
+<li>Variable state and function call histories</li>
+<li>HTML-based output timeline representation</li>
+</ul></li>
+<li>In-procedure definitions:
+<code>with(x in Integer) { let y = x + 1; let x.increment = y }; 5.increment // 6</code></li>
+<li>Component types, and type concatenation:
+<code>component C1 {let x in Integer}; component C2 {let y in Real}; let comp in C1 ~ C2; comp.x // 0</code></li>
+<li>Automatic value extraction from product types:
+<code>fn Integer * Real foo() {return (5, 7.11)}; let x in Real = foo() // 7.11</code></li>
+<li>Superposition types:
+<code>let x = 1 &lt;&gt; 2; y = 3 &lt;&gt; 4; f(x + y) // eq to: f(4) &lt;&gt; f(5) &lt;&gt; f(6)</code></li>
+<li>Function extension:
+<code>after(foo.someStatement(x)) { print(x) }</code></li>
+<li>… Any much more</li>
+</ul>
+</body>
+</html>
